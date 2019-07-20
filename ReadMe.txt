@@ -1,4 +1,4 @@
-Bu projede Asp.Net MVC kullanýlarak yapýldý.
+Bu projede Asp.Net MVC teknolojisi kullanýlarak yapýldý.
 Code First Approach ile database oluþturuldu.
 Entitity Framework  kullanýlmýþtýr.
 
