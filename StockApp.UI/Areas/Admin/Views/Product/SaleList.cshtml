@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "SaleList";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayoutPage.cshtml";
+}
+
+@model List<StockApp.Model.Option.Product>
+
+<script src="~/Content/Scripts/dataTables.bootstrap.min.js"></script>
+<script src="~/Content/Scripts/jquery.dataTables.min.js"></script>
+<link href="~/Content/Css/dataTables.bootstrap.min.css" rel="stylesheet" />
+
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="/Admin/Home/Index"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="/Admin/Product/ProductAdd">Add Product StockCard</a></li>
+        <li class="active">Product StockCard List</li>
+    </ol>
+</section>
+<br />
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Product StockCard</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Critical Stock</th>
+                                <th>First Price</th>
+                                <th>Sale Price</th>
+                                <th>Add Date</th>
+                                <th>Category Name</th>
+                                <th>Sold Quantity</th>
+                                <th>Remaining Quantity</th>
+                                <th>Last Processing Date</th>
+                                <th>Image</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@item.ProductName</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.CriticalStock</td>
+                                <td>@item.FirstPrice</td>
+                                <td>@item.SalePrice</td>
+                                <td>@item.AddDate</td>
+                                <td>@item.Category.Name</td>
+                                <td>@item.SoldQuantity</td>
+                                <td>
+                                    @if (item.RemainingQuantity == item.CriticalStock)
+                                    {
+                                    <h6 class="btn btn-block  btn-warning">@item.RemainingQuantity Critical stock Please place an order.</h6>
+
+                                    }
+                                    else if (item.RemainingQuantity < item.CriticalStock)
+                                    {
+                                    <h6 class="btn btn-block btn-danger">  @item.RemainingQuantity <br /> You've passed the critical stock!Order urgently</h6>
+
+                                    }
+                                    else
+                                    {
+                                        @item.RemainingQuantity
+                                    }
+                                </td>
+                                    <td>@item.LastProcessingDate</td>
+
+                                    <td>
+                                        <img src="@item.ImagePath" style="display:block" width="75" height="75" />
+                                    </td>
+                                    <td><a href="/Admin/Product/SaleUpdate/@item.ID" type="button" class="btn btn-block btn-warning">Update</a></td>
+                                    <td><a href="/Admin/Product/Delete/@item.ID" type="button" class="btn btn-block btn-danger">Delete</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })
+</script>
+

@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "SaleUpdate";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayoutPage.cshtml";
+}
+
+@model StockApp.UI.Areas.Admin.Models.VM.ProductVM
+
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="/Admin/Home/Index"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="/Admin/Product/ProductAdd">Add Product StockCard</a></li>
+        <li><a href="/Admin/Product/ProductList">Product StockCard List</a></li>
+        <li class="active">Product List</li>
+    </ol>
+</section>
+<br />
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Update Products</h3>
+                </div>
+                <form action="/Admin/Product/SaleAdd" method="post" enctype="multipart/form-data" role="form">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="text">ProductName</label>
+                            <input type="text" name="ProductName" value="@Model.Products.ProductName" class="form-control" placeholder="ProductName">
+                        </div>
+                        <div class="form-group">
+                            <label for="text">Quantity</label>
+                            <input type="text" name="Quantity" value="@Model.Products.Quantity" class="form-control" placeholder="Quantity">
+                        </div>
+                        <div class="form-group">
+                            <label for="text">CriticalStock</label>
+                            <input type="text" name="CriticalStock" value="@Model.Products.CriticalStock" class="form-control" placeholder="CriticalStock">
+                        </div>
+                        <div class="form-group">
+                            <label for="text">First Price</label>
+                            <input type="text" name="FirstPrice" value="@Model.Products.FirstPrice" class="form-control" placeholder="FirstPrice">
+                        </div>
+                        <div class="form-group">
+                            <label for="text">Sale Price</label>
+                            <input type="text" name="SalePrice" value="@Model.Products.SalePrice" class="form-control" placeholder="SalePrice">
+                        </div>
+                        <div class="form-group">
+                            <label for="text">Add Date</label>
+                            <input type="datetime" name="AddDate" value="@Model.Products.AddDate" class="form-control" placeholder="AddDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="text">RemainingQuantity</label>
+                            <input type="text" name="Quantity" value="@Model.Products.RemainingQuantity" class="form-control" placeholder="RemainingQuantity">
+                        </div>
+                        <div class="form-group">
+                            <label for="text">Last Processing Date</label>
+                            <input type="datetime" name="LastProcessingDate" value="@Model.Products.LastProcessingDate" class="form-control" placeholder="LastProcessingDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="text">Sold Quantity</label>
+                            <input type="text" name="SoldQuantity" value="@Model.Products.SoldQuantity" class="form-control" placeholder="SoldQuantity">
+                        </div>
+                        <div class="form-group">
+                            <label for="CategoryID">Choose Category</label>
+                            <select name="CategoryID" class="form-control">
+                                @foreach (var item in Model.Categories)
+                                {
+                                    <option value="@item.ID">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Image">Image</label>
+                            <input type="file" name="Image" value="@Model.Products.ImagePath" class="form-control" />
+                        </div>
+                        <input type="text" style="visibility:hidden" name="ID" value="@Model.Products.ID" />
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
